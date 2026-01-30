@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>KleverMed — Портфолио медицинской компании</title>
+    <meta
+      name="description"
+      content="KleverMed — комплексное оснащение медицинских учреждений, косметологических и стоматологических центров, дезинфекционных служб. Премиальные решения с 2009 года."
+    />
+    <meta name="theme-color" content="#000000" />
+
+    <!-- SEO / Open Graph -->
+    <meta property="og:title" content="KleverMed — медицинское оснащение" />
+    <meta
+      property="og:description"
+      content="Портфолио и услуги компании KleverMed: комплексное оснащение медицинских учреждений с 2009 года."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://klevermed.example.com" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/main.css" />
+    
+    <!-- EmailJS SDK -->
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+    ></script>
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "KleverMed",
+        "url": "https://klevermed.example.com",
+        "logo": "/favicon.png",
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "telephone": "+7-921-416-00-48",
+            "contactType": "customer service",
+            "areaServed": "RU",
+            "availableLanguage": ["Russian"]
+          }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "пл Морской Славы, д. 1, ЛИТЕР А, ПОМЕЩ. 3-Н",
+          "addressLocality": "Санкт-Петербург",
+          "postalCode": "199106",
+          "addressCountry": "RU"
+        }
+      }
+    </script>
+  </head>
+
+  <body class="page">
+    <!-- Loader -->
+    <div class="loader" id="loader" aria-hidden="true">
+      <div class="loader__logo">
+        <span class="loader__icon">K</span>
+        <span class="loader__ring"></span>
+      </div>
+      <p class="loader__text">KleverMed</p>
+    </div>
+
+    <!-- Skip link for accessibility -->
+    <a href="#hero" class="page__skip-link">Перейти к содержимому</a>
+
+    <!-- Fixed glass navigation -->
+    <header class="header" aria-label="Основная навигация">
+      <div class="header__inner">
+        <a href="#hero" class="header__logo" aria-label="KleverMed главная">
+          <span class="header__logo-mark">K</span>
+          <span class="header__logo-text">KleverMed</span>
+        </a>
+
+          <button
+            class="header__burger"
+            id="burger"
+            aria-label="Открыть меню"
+            aria-expanded="false"
+            aria-controls="main-nav"
+          >
+          <span class="header__burger-line"></span>
+          <span class="header__burger-line"></span>
+          <span class="header__burger-line"></span>
+        </button>
+
+        <nav class="nav" id="main-nav">
+          <ul class="nav__list">
+            <li class="nav__item">
+              <a
+                href="#hero"
+                class="nav__link nav__link--active"
+                aria-label="Главная"
+              >
+                <span class="nav__icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M4 11L12 4l8 7v8a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-4H10v4a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-8z"
+                    />
+                  </svg>
+                </span>
+                <span class="nav__link-text">Главная</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#about" class="nav__link" aria-label="О компании">
+                <span class="nav__icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="M11 11h2v6h-2zM11 7h2v2h-2z" />
+                  </svg>
+                </span>
+                <span class="nav__link-text">О компании</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#services" class="nav__link" aria-label="Услуги">
+                <span class="nav__icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M4 4h6v6H4zm0 10h6v6H4zm10-10h6v6h-6zm0 10h6v6h-6z"
+                    />
+                  </svg>
+                </span>
+                <span class="nav__link-text">Направления</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#contact" class="nav__link" aria-label="Контакты">
+                <span class="nav__icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M6.6 3.6 9.2 3a1 1 0 0 1 1.1.6l1.3 3.1a1 1 0 0 1-.3 1.2l-1.5 1.2a11 11 0 0 0 4.9 4.9l1.2-1.5a1 1 0 0 1 1.2-.3l3.1 1.3a1 1 0 0 1 .6 1.1l-.6 2.6A1.5 1.5 0 0 1 18.7 20 15.5 15.5 0 0 1 4 5.3 1.5 1.5 0 0 1 6.6 3.6z"
+                    />
+                  </svg>
+                </span>
+                <span class="nav__link-text">Контакты</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="page__main">
+      <!-- HERO -->
+      <section
+        id="hero"
+        class="section hero"
+        aria-labelledby="hero-title"
+        data-section
+      >
+        <div class="hero__background">
+          <video
+            class="hero__video"
+            autoplay
+            muted
+            loop
+            playsinline
+            poster="IMG_20260130_115335_516.jpg"
+          >
+            <source
+              src="5467618347061382673_(0).mp4"
+              type="video/mp4"
+            />
+          </video>
+
+          <div class="hero__gradient"></div>
+        </div>
+
+        <div class="hero__overlay">
+          <div class="hero__content glass glass--strong">
+            <p class="hero__eyebrow">Медицинские решения премиум-класса</p>
+            <h1 id="hero-title" class="hero__title">
+              Klever<span class="hero__title-accent">Med</span>
+            </h1>
+            <p class="hero__subtitle">
+              Комплексное оснащение медицинских учреждений, клиник и
+              косметологических центров с 2009 года.
+            </p>
+            <div class="hero__cta-group">
+              <a href="#services" class="button button--primary">
+                Узнать больше
+              </a>
+              <button
+                class="button button--ghost"
+                data-scroll-to="#contact"
+                type="button"
+              >
+                Связаться с нами
+              </button>
+              <a href="https://klevermed.ru" target="_blank" rel="noopener noreferrer" class="button button--ghost">
+                Сайт компании
+              </a>
+            </div>
+
+            <dl class="hero__stats">
+              <div class="hero__stat">
+                <dt class="hero__stat-number" data-counter="15">15+</dt>
+                <dd class="hero__stat-label">лет опыта</dd>
+              </div>
+              <div class="hero__stat">
+                <dt class="hero__stat-number" data-counter="500">500+</dt>
+                <dd class="hero__stat-label">партнеров</dd>
+              </div>
+              <div class="hero__stat">
+                <dt class="hero__stat-number" data-counter="50">50+</dt>
+                <dd class="hero__stat-label">городов России</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+
+        <div class="hero__scroll-hint" aria-hidden="true">
+          <span class="hero__scroll-icon"></span>
+          <span class="hero__scroll-text">Прокрутите вниз</span>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section
+        id="about"
+        class="section about"
+        aria-labelledby="about-title"
+        data-section
+      >
+        <div class="section__inner">
+          <header class="section__header">
+            <h2 id="about-title" class="section__title">
+              О компании
+            </h2>
+            <p class="section__subtitle">
+              Надежный партнер для медицинских учреждений и красоты с 2009 года.
+            </p>
+          </header>
+
+          <div class="about__grid">
+            <div class="about__director glass glass--soft">
+              <div class="about__photo-carousel" data-photo-carousel>
+                <div class="about__photo-wrapper">
+                  <img
+                    src="IMG_20260130_115333_669.jpg"
+                    alt="Трифонова Марина Васильевна"
+                    class="about__photo about__photo--active"
+                    loading="eager"
+                  />
+                  <img
+                    src="IMG_20260130_115335_516.jpg"
+                    alt="Трифонова Марина Васильевна"
+                    class="about__photo"
+                    loading="lazy"
+                  />
+                  <img
+                    src="IMG_20260130_115335_948.jpg"
+                    alt="Трифонова Марина Васильевна"
+                    class="about__photo"
+                    loading="lazy"
+                  />
+                  <img
+                    src="IMG_20260130_115339_541.jpg"
+                    alt="Трифонова Марина Васильевна"
+                    class="about__photo"
+                    loading="lazy"
+                  />
+                  <img
+                    src="IMG_20260130_115339_751.jpg"
+                    alt="Трифонова Марина Васильевна"
+                    class="about__photo"
+                    loading="lazy"
+                  />
+                  <img
+                    src="IMG_20260130_115339_935.jpg"
+                    alt="Трифонова Марина Васильевна"
+                    class="about__photo"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="about__photo-controls" aria-hidden="true">
+                  <button class="about__photo-control about__photo-control--prev" type="button" aria-label="Предыдущее фото"></button>
+                  <button class="about__photo-control about__photo-control--next" type="button" aria-label="Следующее фото"></button>
+                </div>
+                <span class="about__badge" data-years-experience>8 лет в KleverMed</span>
+              </div>
+              <div class="about__director-info">
+                <h3 class="about__name">Трифонова Марина Васильевна</h3>
+                <p class="about__role">Генеральный директор KleverMed</p>
+                <div class="about__director-stats">
+                  <div class="about__director-stat">
+                    <svg class="about__director-icon" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                    <span>15+ лет в отрасли</span>
+                  </div>
+                  <div class="about__director-stat">
+                    <svg class="about__director-icon" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                    <span>8 лет в KleverMed</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="about__content glass glass--soft">
+              <div class="about__content-header">
+                <svg class="about__content-icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+                <h3 class="about__content-title">О себе</h3>
+              </div>
+              <div class="about__text-wrapper">
+                <p class="about__text about__text--quote">
+                  "Меня зовут Марина Васильевна Трифонова, и я руковожу KleverMed уже более 8 лет. 
+                  За это время мы превратили компанию в надежного партнера для медицинских учреждений 
+                  по всей России."
+                </p>
+                <p class="about__text">
+                  С <strong>2009 года</strong> я работаю в сфере медицинского оснащения, помогая 
+                  больницам, клиникам, косметологическим и стоматологическим центрам получать 
+                  современное оборудование и интегрированный подход.
+                </p>
+                <p class="about__text">
+                  KleverMed специализируется на <strong>оптовой торговле</strong> и 
+                  <strong>комплексном оснащении</strong> медицинских учреждений. Мы выстраиваем 
+                  долгосрочные партнерские отношения, предлагая решения, которые помогают врачам 
+                  заботиться о здоровье и красоте пациентов на высшем уровне.
+                </p>
+              </div>
+              <dl class="about__stats">
+                <div class="about__stat">
+                  <svg class="about__stat-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                  </svg>
+                  <dt class="about__stat-label">Год основания</dt>
+                  <dd class="about__stat-value">2009</dd>
+                </div>
+                <div class="about__stat">
+                  <svg class="about__stat-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                  </svg>
+                  <dt class="about__stat-label">Опыт в KleverMed</dt>
+                  <dd class="about__stat-value" data-counter="8">8 лет</dd>
+                </div>
+                <div class="about__stat">
+                  <svg class="about__stat-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                  </svg>
+                  <dt class="about__stat-label">Специализация</dt>
+                  <dd class="about__stat-value">Оптовая торговля, комплексное оснащение</dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICES -->
+      <section
+        id="services"
+        class="section services"
+        aria-labelledby="services-title"
+        data-section
+      >
+        <div class="section__inner">
+          <header class="section__header">
+            <h2 id="services-title" class="section__title">
+              Наши направления
+            </h2>
+            <p class="section__subtitle">
+              Ведущий поставщик дезинфицирующих средств,
+              медицинского оборудования и расходных материалов.
+            </p>
+          </header>
+
+          <div
+            class="services__carousel"
+            data-carousel
+            aria-label="Категории услуг"
+          >
+            <div class="services__track" data-carousel-track>
+              <article class="services__card glass glass--soft" data-service>
+                <div class="services__icon services__icon--hospital" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+                    />
+                  </svg>
+                </div>
+                <h3 class="services__title">«М'АРС ИНТЕРНЕЙШНЛ»</h3>
+                <p class="services__text">
+                  Крупнейший поставщик дезинфицирующих средств,
+                  медицинского оборудования и расходных медицинских материалов в России.
+                  Комплексные поставки в клиники и оптовые продажи по минимальным ценам напрямую от производителей.
+                  Сотни крупнейших потребителей, постоянных клиентов, медицинских учреждений.
+                </p>
+              </article>
+
+              <article class="services__card glass glass--soft" data-service>
+                <div class="services__icon services__icon--center" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+                    />
+                  </svg>
+                </div>
+                <h3 class="services__title">ДЕЗИНФИЦИРУЮЩИЕ СРЕДСТВА</h3>
+                <p class="services__text">
+                  Эксклюзивный поставщик эффективного антисептика «Октенисепт» в аптеки по всей России. 
+                  Предлагаем гибкую систему скидок и индивидуальный подход в снабжении.
+                </p>
+              </article>
+
+              <article class="services__card glass glass--soft" data-service>
+                <div class="services__icon services__icon--beauty" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+                    />
+                  </svg>
+                </div>
+                <h3 class="services__title">Медицинское оборудование</h3>
+                <p class="services__text">
+                  Поставки медицинского оборудования напрямую от производителей необходимые медицинским учреждениям 
+                  и общественным учреждениям для работы. Точно в срок.
+                </p>
+              </article>
+
+              <article class="services__card glass glass--soft" data-service>
+                <div class="services__icon services__icon--dental" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+                    />
+                  </svg>
+                </div>
+                <h3 class="services__title">Расходные медицинские материалы</h3>
+                <p class="services__text">
+                  Пластыри, бинты, одноразовое белье, крафт пакеты, рентген пленка и другие материалы, 
+                  необходимые на регулярной основе. Доступные цены, стабильность поставок и гарантированное 
+                  непосредственно производителем качество.
+                </p>
+              </article>
+
+              <article class="services__card glass glass--soft" data-service>
+                <div class="services__icon services__icon--clean" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+                    />
+                  </svg>
+                </div>
+                <h3 class="services__title">ДИСПЕНСОРЫ И ДОЗИРУЮЩИЕ СИСТЕМЫ</h3>
+                <p class="services__text">
+                  Экономичные, удобные и прочные диспенсоры, позволяющие точно контролировать расход материалов. 
+                  Отечественное, европейское и американское производство гарантируют высокую надёжность и качество устройств.
+                </p>
+              </article>
+            </div>
+
+            <div class="services__controls" aria-hidden="true">
+              <button
+                class="services__control services__control--prev"
+                type="button"
+                data-carousel-prev
+              ></button>
+              <button
+                class="services__control services__control--next"
+                type="button"
+                data-carousel-next
+              ></button>
+            </div>
+          </div>
+
+          <div class="services__note glass glass--soft">
+            <p>
+              Каждый проект — это индивидуальное решение: от подбора оборудования
+              до обучения персонала и сервисного сопровождения.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section
+        id="contact"
+        class="section contact"
+        aria-labelledby="contact-title"
+        data-section
+      >
+        <div class="section__inner">
+          <header class="section__header">
+            <h2 id="contact-title" class="section__title">
+              Контакты
+            </h2>
+            <p class="section__subtitle">
+              Свяжитесь с KleverMed удобным для вас способом.
+            </p>
+          </header>
+
+          <div class="contact__grid">
+            <div class="contact__info glass glass--soft">
+              <h3 class="contact__subtitle">
+                Контактная информация
+              </h3>
+              <ul class="contact__list">
+                <li class="contact__item">
+                  <div class="contact__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M6.6 3.6 9.2 3a1 1 0 0 1 1.1.6l1.3 3.1a1 1 0 0 1-.3 1.2l-1.5 1.2a11 11 0 0 0 4.9 4.9l1.2-1.5a1 1 0 0 1 1.2-.3l3.1 1.3a1 1 0 0 1 .6 1.1l-.6 2.6A1.5 1.5 0 0 1 18.7 20 15.5 15.5 0 0 1 4 5.3 1.5 1.5 0 0 1 6.6 3.6z"
+                      />
+                    </svg>
+                  </div>
+                  <div class="contact__body">
+                    <p class="contact__label">Генеральный директор</p>
+                    <p class="contact__value">
+                      Трифонова Марина Васильевна
+                    </p>
+                    <a
+                      href="tel:+79214160048"
+                      class="contact__link"
+                    >
+                      +7 (921) 416-00-48
+                    </a>
+                  </div>
+                </li>
+
+                <li class="contact__item">
+                  <div class="contact__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M6.6 3.6 9.2 3a1 1 0 0 1 1.1.6l1.3 3.1a1 1 0 0 1-.3 1.2l-1.5 1.2a11 11 0 0 0 4.9 4.9l1.2-1.5a1 1 0 0 1 1.2-.3l3.1 1.3a1 1 0 0 1 .6 1.1l-.6 2.6A1.5 1.5 0 0 1 18.7 20 15.5 15.5 0 0 1 4 5.3 1.5 1.5 0 0 1 6.6 3.6z"
+                      />
+                    </svg>
+                  </div>
+                  <div class="contact__body">
+                    <p class="contact__label">Офис</p>
+                    <a
+                      href="tel:+78129105226"
+                      class="contact__link"
+                    >
+                      +7 (812) 910-52-26
+                    </a>
+                  </div>
+                </li>
+
+                <li class="contact__item">
+                  <div class="contact__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M4 4h16a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zm2 3v10h12V7l-6 4-6-4z"
+                      />
+                    </svg>
+                  </div>
+                  <div class="contact__body">
+                    <p class="contact__label">Email</p>
+                    <a
+                      href="mailto:marina_pap@mail.ru"
+                      class="contact__link"
+                    >
+                      marina_pap@mail.ru
+                    </a>
+                    <a
+                      href="mailto:Klevermed@indox.ru"
+                      class="contact__link"
+                    >
+                      Klevermed@indox.ru
+                    </a>
+                  </div>
+                </li>
+
+                <li class="contact__item">
+                  <div class="contact__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M12 2a7 7 0 0 1 7 7c0 4-4 8-7 11-3-3-7-7-7-11a7 7 0 0 1 7-7zm0 4a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"
+                      />
+                    </svg>
+                  </div>
+                  <div class="contact__body">
+                    <p class="contact__label">Адрес</p>
+                    <a
+                      href="https://yandex.ru/maps/?pt=30.235586,59.926066&z=17"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="contact__link"
+                    >
+                      пл Морской Славы, д. 1, ЛИТЕР А, ПОМЕЩ. 3-Н,<br />
+                      вн.тер.г. муниципальный округ Гавань,<br />
+                      г Санкт-Петербург, 199106
+                    </a>
+                  </div>
+                </li>
+
+                <li class="contact__item">
+                  <div class="contact__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+                      />
+                    </svg>
+                  </div>
+                  <div class="contact__body">
+                    <p class="contact__label">Сайт компании</p>
+                    <a
+                      href="https://klevermed.ru"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="contact__link"
+                    >
+                      klevermed.ru
+                    </a>
+                  </div>
+                </li>
+              </ul>
+
+              <div class="contact__social" aria-label="Социальные сети">
+                <a href="https://wa.me/79214160048" target="_blank" rel="noopener noreferrer" class="contact__social-link" aria-label="WhatsApp">
+                  <svg class="contact__social-svg" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                  </svg>
+                </a>
+                <a href="https://t.me/klevermed" target="_blank" rel="noopener noreferrer" class="contact__social-link" aria-label="Telegram">
+                  <svg class="contact__social-svg" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                  </svg>
+                </a>
+                <a href="https://vk.com/klevermed" target="_blank" rel="noopener noreferrer" class="contact__social-link" aria-label="VK">
+                  <svg class="contact__social-svg" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12.785 16.241s.336-.041.508-.25c.172-.195.165-.56.165-.56s-.024-1.544.688-1.771c.703-.22 1.603 1.49 2.554 2.147.703.49 1.234.38 1.234.38l2.545-.038s1.33-.086.698-1.13c-.052-.082-.37-.78-1.91-2.216-1.614-1.51-1.395-1.265.543-3.88 1.17-1.99 1.638-3.203 1.494-3.72-.14-.5-1.003-.37-1.003-.37l-2.89.018s-.214-.03-.373.075c-.16.105-.26.35-.26.35s-.465 1.24-1.08 2.293c-1.3 2.29-1.82 2.41-2.03 2.27-.494-.33-.37-1.33-.37-2.04 0-2.22.33-3.15-.645-3.39-.323-.08-.56-.13-1.386-.14-1.06-.01-1.96.003-2.47.26-.336.17-.59.55-.434.57.195.02.635.12.867.44.302.42.29 1.36.29 1.36s.174 2.58-.405 2.9c-.397.21-.94-.22-2.11-2.27C4.93 6.78 4.4 5.53 4.4 5.53s-.09-.22-.25-.34c-.19-.14-.47-.18-.47-.18l-2.74.018s-.41.012-.56.19c-.14.16-.01.5-.01.5s2.15 5.04 4.58 7.59c2.23 2.3 4.78 2.15 4.78 2.15h1.14s.33-.02.51.23c.19.27.18.7.18.7s-.03 1.98.45 2.27c.44.27 1.01-.28 2.26-1.95.62-.82 1.09-1.36 1.09-1.36s.09-.06.22-.04l2.41.02z"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <div class="contact__form-wrapper glass glass--soft">
+              <h3 class="contact__subtitle">
+                Форма обратной связи
+              </h3>
+              <form
+                class="contact__form"
+                id="contact-form"
+                novalidate
+                aria-label="Форма обратной связи"
+              >
+                <div class="contact__field">
+                  <label class="contact__label" for="name">Ваше имя</label>
+                  <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    class="contact__input"
+                    autocomplete="name"
+                    required
+                    minlength="2"
+                  />
+                  <p class="contact__error" data-error-for="name"></p>
+                </div>
+
+                <div class="contact__field">
+                  <label class="contact__label" for="phone">Телефон</label>
+                  <input
+                    id="phone"
+                    name="phone"
+                    type="tel"
+                    class="contact__input"
+                    autocomplete="tel"
+                    required
+                  />
+                  <p class="contact__error" data-error-for="phone"></p>
+                </div>
+
+                <div class="contact__field">
+                  <label class="contact__label" for="message">Запрос</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    class="contact__input contact__input--textarea"
+                    rows="3"
+                    required
+                    minlength="5"
+                  ></textarea>
+                  <p class="contact__error" data-error-for="message"></p>
+                </div>
+
+                <button class="button button--primary button--full" type="submit">
+                  Отправить запрос
+                </button>
+                <p class="contact__note">
+                  Нажимая на кнопку, вы соглашаетесь с обработкой персональных данных.
+                </p>
+                <p
+                  class="contact__success"
+                  id="form-success"
+                  role="status"
+                  aria-live="polite"
+                ></p>
+              </form>
+            </div>
+          </div>
+
+          <div class="contact__map glass glass--soft">
+            <div id="yandex-map" style="width: 100%; height: 400px; border-radius: 1rem; overflow: hidden;"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer__inner">
+        <p class="footer__copy">
+          © <span id="current-year"></span> KleverMed. Все права защищены.
+        </p>
+        <p class="footer__meta">
+          Портфолио медицинской компании с фокусом на качество, безопасность и
+          инновации.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Yandex Maps API -->
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=YOUR_YANDEX_MAPS_API_KEY&lang=ru_RU" type="text/javascript"></script>
+    
+    <!-- Scripts -->
+    <script src="js/main.js" type="module"></script>
+  </body>
+</html>
+

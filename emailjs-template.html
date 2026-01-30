@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Новое сообщение с сайта KleverMed</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #000000;
+      color: #f5f5f5;
+      line-height: 1.6;
+      padding: 2rem;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: rgba(18, 18, 18, 0.95);
+      border-radius: 1.5rem;
+      border: 1px solid rgba(0, 200, 83, 0.3);
+      overflow: hidden;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.8);
+    }
+    .header {
+      background: radial-gradient(circle at 20% 0, rgba(0, 255, 136, 0.3), rgba(0, 200, 83, 0.1));
+      padding: 2rem;
+      text-align: center;
+      border-bottom: 1px solid rgba(0, 255, 136, 0.2);
+    }
+    .logo {
+      display: inline-block;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 0.65rem;
+      background: radial-gradient(circle at 30% 10%, #00ff88, #00c853);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.5rem;
+      color: #000;
+      margin-bottom: 1rem;
+      box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
+    }
+    .header h1 {
+      font-size: 1.5rem;
+      color: #00ff88;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+    .header p {
+      color: #a3a3a3;
+      font-size: 0.9rem;
+    }
+    .content {
+      padding: 2rem;
+    }
+    .field {
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .field-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #00ff88;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    .field-value {
+      font-size: 1rem;
+      color: #f5f5f5;
+      word-wrap: break-word;
+    }
+    .message-field {
+      background: rgba(0, 200, 83, 0.05);
+      border-color: rgba(0, 255, 136, 0.2);
+    }
+    .footer {
+      padding: 1.5rem 2rem;
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(0, 0, 0, 0.3);
+    }
+    .footer p {
+      color: #a3a3a3;
+      font-size: 0.85rem;
+    }
+    .footer a {
+      color: #00ff88;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="logo">K</div>
+      <h1>Новое сообщение с сайта</h1>
+      <p>KleverMed — Портфолио</p>
+    </div>
+    
+    <div class="content">
+      <div class="field">
+        <span class="field-label">Имя</span>
+        <div class="field-value">{{from_name}}</div>
+      </div>
+      
+      <div class="field">
+        <span class="field-label">Телефон</span>
+        <div class="field-value">{{from_phone}}</div>
+      </div>
+      
+      <div class="field message-field">
+        <span class="field-label">Сообщение</span>
+        <div class="field-value">{{message}}</div>
+      </div>
+    </div>
+    
+    <div class="footer">
+      <p>Это сообщение отправлено автоматически с сайта <a href="https://klevermed.ru">klevermed.ru</a></p>
+      <p style="margin-top: 0.5rem;">Не отвечайте на это письмо напрямую</p>
+    </div>
+  </div>
+</body>
+</html>
+
