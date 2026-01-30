@@ -201,8 +201,8 @@ a {
 }
 
 .header__logo-mark {
-  width: 1.85rem;
-  height: 1.85rem;
+  width: 2.2rem;
+  height: 2.2rem;
   border-radius: 0.65rem;
   background: radial-gradient(
     circle at 30% 10%,
@@ -216,14 +216,15 @@ a {
   font-weight: 800;
   color: #000;
   box-shadow: var(--shadow-neon);
-  font-size: 1.1rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
 }
 
 .header__logo-text {
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-transform: none;
 }
 
 .header__burger {
@@ -705,7 +706,8 @@ a {
   font-weight: 800;
   font-size: 2.2rem;
   letter-spacing: 0.05em;
-  text-transform: uppercase;
+  text-transform: none;
+  line-height: 1.2;
 }
 
 .hero__title-accent {
@@ -1230,11 +1232,11 @@ a {
   box-shadow: 
     0 4px 16px rgba(0, 0, 0, 0.4),
     0 0 20px rgba(0, 255, 136, 0.4);
-  transform: translateY(-50%) scale(1.1);
+  transform: scale(1.1);
 }
 
 .services__control:active:not(:disabled) {
-  transform: translateY(-50%) scale(0.95);
+  transform: scale(0.95);
 }
 
 .services__control[style*="opacity: 0.3"] {
@@ -1493,45 +1495,132 @@ a {
   visibility: hidden;
 }
 
-.loader__logo {
+.loader__content {
   position: relative;
-  width: 3.75rem;
-  height: 3.75rem;
-  border-radius: 1.4rem;
+  width: 5rem;
+  height: 5rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(
-    circle at 25% 0,
-    var(--color-primary-neon),
-    var(--color-primary)
-  );
-  box-shadow: 0 0 30px rgba(0, 255, 136, 0.7);
+  margin-bottom: 1.5rem;
 }
 
-.loader__icon {
+.loader__initials {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.15rem;
+  z-index: 2;
+}
+
+.loader__initial {
   font-family: var(--font-accent);
   font-weight: 800;
-  font-size: 2rem;
+  font-size: 1.8rem;
   color: #000;
+  display: inline-block;
+  opacity: 0;
+  transform: scale(0) rotate(-180deg);
+  animation: loader-initial-appear 0.6s ease-out forwards;
+}
+
+.loader__initial--1 {
+  animation-delay: 0.1s;
+}
+
+.loader__initial--2 {
+  animation-delay: 0.3s;
+}
+
+.loader__initial--3 {
+  animation-delay: 0.5s;
 }
 
 .loader__ring {
   position: absolute;
   inset: -0.5rem;
-  border-radius: inherit;
-  border: 1px solid rgba(0, 255, 136, 0.7);
+  border-radius: 50%;
+  border: 2px solid rgba(0, 255, 136, 0.7);
   border-top-color: transparent;
   border-left-color: transparent;
   animation: loader-rotate 1.4s linear infinite;
+  z-index: 1;
 }
 
-.loader__text {
-  margin-top: 0.9rem;
-  font-size: 0.85rem;
-  letter-spacing: 0.2em;
+.loader__name {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.loader__name-line {
+  margin: 0;
+  font-family: var(--font-accent);
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-main);
+  opacity: 0;
+  transform: translateY(10px);
+  animation: loader-name-appear 0.5s ease-out forwards;
+}
+
+.loader__name-line--1 {
+  animation-delay: 0.7s;
+  color: var(--color-primary-neon);
+  text-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+}
+
+.loader__name-line--2 {
+  animation-delay: 0.9s;
+}
+
+.loader__name-line--3 {
+  animation-delay: 1.1s;
+}
+
+.loader__role {
+  margin: 0;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--color-text-muted);
+  opacity: 0;
+  animation: loader-role-appear 0.5s ease-out forwards;
+  animation-delay: 1.3s;
+}
+
+@keyframes loader-initial-appear {
+  0% {
+    opacity: 0;
+    transform: scale(0) rotate(-180deg);
+  }
+  50% {
+    transform: scale(1.2) rotate(10deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes loader-name-appear {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes loader-role-appear {
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes loader-rotate {
@@ -1685,6 +1774,7 @@ a {
 
   .hero__title {
     font-size: 3.1rem;
+    line-height: 1.15;
   }
 
   .hero__subtitle {
@@ -1729,6 +1819,7 @@ a {
 
   .hero__title {
     font-size: 3.4rem;
+    line-height: 1.15;
   }
 
   .hero__subtitle {

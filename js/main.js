@@ -74,7 +74,7 @@ function initLoader() {
   window.addEventListener('load', () => {
     setTimeout(() => {
       loader.classList.add(CLASSNAMES.loaderHidden);
-    }, 800);
+    }, 1800);
   });
 }
 
@@ -125,9 +125,11 @@ function initNavigation() {
         if (!id) return;
         links.forEach((link) => {
           const href = link.getAttribute('href');
+          // Маппинг старых ID на новые для обратной совместимости
+          const targetId = href === '#services' ? '#company' : href;
           link.classList.toggle(
             'nav__link--active',
-            href === `#${id}`
+            targetId === `#${id}` || href === `#${id}`
           );
         });
       });

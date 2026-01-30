@@ -6,10 +6,10 @@
       name="viewport"
       content="width=device-width, initial-scale=1, viewport-fit=cover"
     />
-    <title>KleverMed — Портфолио медицинской компании</title>
+    <title>Марина Трифонова — Личная визитка генерального директора KleverMed</title>
     <meta
       name="description"
-      content="KleverMed — комплексное оснащение медицинских учреждений, косметологических и стоматологических центров, дезинфекционных служб. Премиальные решения с 2009 года."
+      content="Марина Трифонова — генеральный директор KleverMed. Личная визитка с информацией о профессиональном опыте и компании."
     />
     <meta name="theme-color" content="#000000" />
 
@@ -70,11 +70,20 @@
   <body class="page">
     <!-- Loader -->
     <div class="loader" id="loader" aria-hidden="true">
-      <div class="loader__logo">
-        <span class="loader__icon">K</span>
-        <span class="loader__ring"></span>
+      <div class="loader__content">
+        <div class="loader__initials">
+          <span class="loader__initial loader__initial--1">Т</span>
+          <span class="loader__initial loader__initial--2">М</span>
+          <span class="loader__initial loader__initial--3">В</span>
+        </div>
+        <div class="loader__ring"></div>
       </div>
-      <p class="loader__text">KleverMed</p>
+      <div class="loader__name">
+        <p class="loader__name-line loader__name-line--1">Трифонова</p>
+        <p class="loader__name-line loader__name-line--2">Марина</p>
+        <p class="loader__name-line loader__name-line--3">Васильевна</p>
+      </div>
+      <p class="loader__role">Генеральный директор</p>
     </div>
 
     <!-- Skip link for accessibility -->
@@ -83,9 +92,9 @@
     <!-- Fixed glass navigation -->
     <header class="header" aria-label="Основная навигация">
       <div class="header__inner">
-        <a href="#hero" class="header__logo" aria-label="KleverMed главная">
-          <span class="header__logo-mark">K</span>
-          <span class="header__logo-text">KleverMed</span>
+        <a href="#hero" class="header__logo" aria-label="Главная">
+          <span class="header__logo-mark">М</span>
+          <span class="header__logo-text">Марина Трифонова</span>
         </a>
 
           <button
@@ -119,18 +128,18 @@
               </a>
             </li>
             <li class="nav__item">
-              <a href="#about" class="nav__link" aria-label="О компании">
+              <a href="#about" class="nav__link" aria-label="О себе">
                 <span class="nav__icon">
                   <svg viewBox="0 0 24 24" aria-hidden="true">
                     <circle cx="12" cy="12" r="9" />
                     <path d="M11 11h2v6h-2zM11 7h2v2h-2z" />
                   </svg>
                 </span>
-                <span class="nav__link-text">О компании</span>
+                <span class="nav__link-text">О себе</span>
               </a>
             </li>
             <li class="nav__item">
-              <a href="#services" class="nav__link" aria-label="Услуги">
+              <a href="#company" class="nav__link" aria-label="Компания">
                 <span class="nav__icon">
                   <svg viewBox="0 0 24 24" aria-hidden="true">
                     <path
@@ -138,7 +147,7 @@
                     />
                   </svg>
                 </span>
-                <span class="nav__link-text">Направления</span>
+                <span class="nav__link-text">Компания</span>
               </a>
             </li>
             <li class="nav__item">
@@ -188,42 +197,43 @@
 
         <div class="hero__overlay">
           <div class="hero__content glass glass--strong">
-            <p class="hero__eyebrow">Медицинские решения премиум-класса</p>
+            <p class="hero__eyebrow">Добро пожаловать на мою визитку</p>
             <h1 id="hero-title" class="hero__title">
-              Klever<span class="hero__title-accent">Med</span>
+              Трифонова<br />
+              <span class="hero__title-accent">Марина Васильевна</span>
             </h1>
             <p class="hero__subtitle">
-              Комплексное оснащение медицинских учреждений, клиник и
-              косметологических центров с 2009 года.
+              Генеральный директор KleverMed. Более 15 лет в сфере медицинского оснащения. 
+              Помогаю медицинским учреждениям получать современное оборудование и интегрированные решения.
             </p>
             <div class="hero__cta-group">
-              <a href="#services" class="button button--primary">
-                Узнать больше
+              <a href="#about" class="button button--primary">
+                Обо мне
               </a>
               <button
                 class="button button--ghost"
                 data-scroll-to="#contact"
                 type="button"
               >
-                Связаться с нами
+                Связаться со мной
               </button>
-              <a href="https://klevermed.ru" target="_blank" rel="noopener noreferrer" class="button button--ghost">
-                Сайт компании
+              <a href="#company" class="button button--ghost">
+                О компании
               </a>
             </div>
 
             <dl class="hero__stats">
               <div class="hero__stat">
                 <dt class="hero__stat-number" data-counter="15">15+</dt>
-                <dd class="hero__stat-label">лет опыта</dd>
+                <dd class="hero__stat-label">лет в отрасли</dd>
               </div>
               <div class="hero__stat">
-                <dt class="hero__stat-number" data-counter="500">500+</dt>
-                <dd class="hero__stat-label">партнеров</dd>
+                <dt class="hero__stat-number" data-counter="8">8</dt>
+                <dd class="hero__stat-label">лет в KleverMed</dd>
               </div>
               <div class="hero__stat">
-                <dt class="hero__stat-number" data-counter="50">50+</dt>
-                <dd class="hero__stat-label">городов России</dd>
+                <dt class="hero__stat-number" data-counter="2009">2009</dt>
+                <dd class="hero__stat-label">год начала карьеры</dd>
               </div>
             </dl>
           </div>
@@ -245,10 +255,10 @@
         <div class="section__inner">
           <header class="section__header">
             <h2 id="about-title" class="section__title">
-              О компании
+              О себе
             </h2>
             <p class="section__subtitle">
-              Надежный партнер для медицинских учреждений и красоты с 2009 года.
+              Мой профессиональный путь в сфере медицинского оснащения и развития KleverMed.
             </p>
           </header>
 
@@ -297,7 +307,7 @@
                   <button class="about__photo-control about__photo-control--prev" type="button" aria-label="Предыдущее фото"></button>
                   <button class="about__photo-control about__photo-control--next" type="button" aria-label="Следующее фото"></button>
                 </div>
-                <span class="about__badge" data-years-experience>8 лет в KleverMed</span>
+                <span class="about__badge" data-years-experience>8 лет как руководитель</span>
               </div>
               <div class="about__director-info">
                 <h3 class="about__name">Трифонова Марина Васильевна</h3>
@@ -338,8 +348,8 @@
                   современное оборудование и интегрированный подход.
                 </p>
                 <p class="about__text">
-                  KleverMed специализируется на <strong>оптовой торговле</strong> и 
-                  <strong>комплексном оснащении</strong> медицинских учреждений. Мы выстраиваем 
+                  В KleverMed я руковожу командой, которая специализируется на <strong>оптовой торговле</strong> и 
+                  <strong>комплексном оснащении</strong> медицинских учреждений. Вместе мы выстраиваем 
                   долгосрочные партнерские отношения, предлагая решения, которые помогают врачам 
                   заботиться о здоровье и красоте пациентов на высшем уровне.
                 </p>
@@ -372,20 +382,20 @@
         </div>
       </section>
 
-      <!-- SERVICES -->
+      <!-- COMPANY -->
       <section
-        id="services"
+        id="company"
         class="section services"
-        aria-labelledby="services-title"
+        aria-labelledby="company-title"
         data-section
       >
         <div class="section__inner">
           <header class="section__header">
-            <h2 id="services-title" class="section__title">
-              Наши направления
+            <h2 id="company-title" class="section__title">
+              О компании KleverMed
             </h2>
             <p class="section__subtitle">
-              Ведущий поставщик дезинфицирующих средств,
+              Компания, которой я руковожу. Ведущий поставщик дезинфицирующих средств,
               медицинского оборудования и расходных материалов.
             </p>
           </header>
@@ -513,7 +523,7 @@
               Контакты
             </h2>
             <p class="section__subtitle">
-              Свяжитесь с KleverMed удобным для вас способом.
+              Свяжитесь со мной удобным для вас способом.
             </p>
           </header>
 
@@ -729,11 +739,10 @@
     <footer class="footer">
       <div class="footer__inner">
         <p class="footer__copy">
-          © <span id="current-year"></span> KleverMed. Все права защищены.
+          © <span id="current-year"></span> Марина Трифонова. Все права защищены.
         </p>
         <p class="footer__meta">
-          Портфолио медицинской компании с фокусом на качество, безопасность и
-          инновации.
+          Личная визитка генерального директора KleverMed.
         </p>
       </div>
     </footer>
