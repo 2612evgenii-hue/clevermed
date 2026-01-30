@@ -137,17 +137,7 @@ a {
 }
 
 .glass::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    circle at top,
-    rgba(0, 255, 136, 0.08),
-    transparent 55%
-  );
-  opacity: 0.2;
-  pointer-events: none;
-  will-change: auto;
+  display: none;
 }
 
 .glass--strong {
@@ -1138,7 +1128,7 @@ a {
 
 .services__card:hover::after,
 .services__card--active::after {
-  opacity: 1;
+  display: none;
 }
 
 .services__icon {
