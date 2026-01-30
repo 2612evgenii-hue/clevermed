@@ -125,9 +125,12 @@ function initNavigation() {
         if (!id) return;
         links.forEach((link) => {
           const href = link.getAttribute('href');
-          // Проверяем соответствие href и id секции
-          const isActive = href === `#${id}`;
-          link.classList.toggle('nav__link--active', isActive);
+          // Маппинг старых ID на новые для обратной совместимости
+          const targetId = href === '#services' ? '#company' : href;
+          link.classList.toggle(
+            'nav__link--active',
+            targetId === `#${id}` || href === `#${id}`
+          );
         });
       });
     },
