@@ -142,11 +142,12 @@ a {
   inset: 0;
   background: radial-gradient(
     circle at top,
-    rgba(0, 255, 136, 0.16),
+    rgba(0, 255, 136, 0.08),
     transparent 55%
   );
-  opacity: 0.3;
+  opacity: 0.2;
   pointer-events: none;
+  will-change: auto;
 }
 
 .glass--strong {
@@ -1078,7 +1079,7 @@ a {
 
 .services__carousel {
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   padding-bottom: 2.5rem;
 }
 
@@ -1089,6 +1090,12 @@ a {
   overflow-x: auto;
   padding: 0.25rem 0.25rem 0.5rem;
   -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* Отключаем свайпы для карусели услуг */
+.services__track {
+  touch-action: pan-y;
 }
 
 .services__track::-webkit-scrollbar {
@@ -1103,6 +1110,7 @@ a {
   cursor: pointer;
   transition: transform var(--transition-med),
     box-shadow var(--transition-med), border-color var(--transition-med);
+  margin: 0 0.5rem;
 }
 
 .services__card::after {
@@ -1166,27 +1174,71 @@ a {
 
 .services__controls {
   position: absolute;
-  inset: auto 0.25rem 0.3rem;
+  top: 50%;
+  left: -0.5rem;
+  right: -0.5rem;
+  transform: translateY(-50%);
   display: flex;
-  justify-content: center;
-  gap: 0.6rem;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  pointer-events: none;
+  z-index: 10;
 }
 
 .services__control {
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 999px;
-  border: none;
-  background: rgba(255, 255, 255, 0.15);
+  pointer-events: auto;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(0, 255, 136, 0.4);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--color-primary-neon);
   cursor: pointer;
-  transition: background var(--transition-fast),
-    transform var(--transition-fast), width var(--transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  position: relative;
 }
 
-.services__control--active {
-  width: 1.35rem;
-  background: var(--color-primary-neon);
-  box-shadow: var(--shadow-neon);
+.services__control::before {
+  content: "";
+  width: 0.6rem;
+  height: 0.6rem;
+  border: 2px solid currentColor;
+  border-top: none;
+  border-right: none;
+}
+
+.services__control--prev::before {
+  transform: rotate(45deg);
+  margin-left: 0.2rem;
+}
+
+.services__control--next::before {
+  transform: rotate(-135deg);
+  margin-right: 0.2rem;
+}
+
+.services__control:hover:not(:disabled) {
+  background: rgba(0, 255, 136, 0.15);
+  border-color: rgba(0, 255, 136, 0.7);
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(0, 255, 136, 0.4);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.services__control:active:not(:disabled) {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.services__control[style*="opacity: 0.3"] {
+  cursor: not-allowed;
 }
 
 .services__note {

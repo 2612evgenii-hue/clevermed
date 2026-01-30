@@ -260,13 +260,15 @@ function initServicesCarousel() {
   const nextBtn = document.querySelector(SELECTORS.servicesNext);
 
   const updateControls = () => {
-    if (!prevBtn || !nextBtn) return;
-    STATE.servicesControls.forEach((ctrl) =>
-      ctrl.classList.remove(CLASSNAMES.servicesControlActive)
-    );
-    const current =
-      STATE.servicesControls[STATE.servicesIndex] || STATE.servicesControls[0];
-    if (current) current.classList.add(CLASSNAMES.servicesControlActive);
+    // Обновляем состояние стрелочек (скрываем если первая/последняя карточка)
+    if (prevBtn) {
+      prevBtn.style.opacity = STATE.servicesIndex === 0 ? '0.3' : '1';
+      prevBtn.style.pointerEvents = STATE.servicesIndex === 0 ? 'none' : 'auto';
+    }
+    if (nextBtn) {
+      nextBtn.style.opacity = STATE.servicesIndex === STATE.servicesCards.length - 1 ? '0.3' : '1';
+      nextBtn.style.pointerEvents = STATE.servicesIndex === STATE.servicesCards.length - 1 ? 'none' : 'auto';
+    }
   };
 
   const scrollToIndex = (index) => {
@@ -286,54 +288,21 @@ function initServicesCarousel() {
     updateControls();
   };
 
-  // Build dot controls based on cards count
-  const controlsContainer = prevBtn?.parentElement;
-  if (controlsContainer) {
-    controlsContainer.innerHTML = '';
-    STATE.servicesControls = STATE.servicesCards.map((_, idx) => {
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'services__control';
-      if (idx === 0) btn.classList.add(CLASSNAMES.servicesControlActive);
-      btn.addEventListener('click', () => scrollToIndex(idx));
-      controlsContainer.appendChild(btn);
-      return btn;
+  // Используем стрелочки вместо точек
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      scrollToIndex(STATE.servicesIndex - 1);
     });
   }
 
-  // Swipe gestures for mobile
-  let startX = 0;
-  let isSwiping = false;
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      scrollToIndex(STATE.servicesIndex + 1);
+    });
+  }
 
-  track.addEventListener(
-    'touchstart',
-    (event) => {
-      if (event.touches.length !== 1) return;
-      startX = event.touches[0].clientX;
-      isSwiping = true;
-    },
-    { passive: true }
-  );
-
-  track.addEventListener(
-    'touchmove',
-    (event) => {
-      if (!isSwiping || event.touches.length !== 1) return;
-      const dx = event.touches[0].clientX - startX;
-      if (Math.abs(dx) > 40) {
-        isSwiping = false;
-        if (dx < 0) scrollToIndex(STATE.servicesIndex + 1);
-        else scrollToIndex(STATE.servicesIndex - 1);
-      }
-    },
-    { passive: true }
-  );
-
-  track.addEventListener('touchend', () => {
-    isSwiping = false;
-  });
-
-  // Click to focus card
+  // Убрали свайпы - теперь только стрелочки
+  // Click to focus card - оставляем для удобства
   STATE.servicesCards.forEach((card, index) => {
     card.addEventListener('click', () => scrollToIndex(index));
   });
