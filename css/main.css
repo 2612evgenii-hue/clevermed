@@ -158,14 +158,7 @@ a {
   background: rgba(255, 255, 255, 0.04);
 }
 
-@supports ((backdrop-filter: blur(12px)) or (-webkit-backdrop-filter: blur(12px))) {
 
-
-  .glass--strong {
-    backdrop-filter: blur(var(--blur-strong));
-    -webkit-backdrop-filter: blur(var(--blur-strong));
-  }
-}
 
 /* Header & navigation */
 
