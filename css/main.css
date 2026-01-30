@@ -127,25 +127,6 @@ a {
 
 /* Glass effect */
 
-.glass {
-  background: var(--color-glass);
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--color-border-soft);
-  box-shadow: var(--shadow-soft);
-  position: relative;
-  overflow: hidden;
-}
-
-
-
-.glass--strong {
-  background: var(--color-glass-strong);
-}
-
-.glass--soft {
-  background: rgba(255, 255, 255, 0.04);
-}
-
 
 
 /* Header & navigation */
