@@ -136,9 +136,7 @@ a {
   overflow: hidden;
 }
 
-.glass::before {
-  display: none;
-}
+
 
 .glass--strong {
   background: var(--color-glass-strong);
