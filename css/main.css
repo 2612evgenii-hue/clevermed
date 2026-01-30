@@ -127,7 +127,48 @@ a {
 
 /* Glass effect */
 
+.glass {
+  background: var(--color-glass);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border-soft);
+  box-shadow: var(--shadow-soft);
+  position: relative;
+  overflow: hidden;
+}
 
+.glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at top,
+    rgba(0, 255, 136, 0.08),
+    transparent 55%
+  );
+  opacity: 0.2;
+  pointer-events: none;
+  will-change: auto;
+}
+
+.glass--strong {
+  background: var(--color-glass-strong);
+}
+
+.glass--soft {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+@supports ((backdrop-filter: blur(12px)) or (-webkit-backdrop-filter: blur(12px))) {
+  .glass {
+    backdrop-filter: blur(var(--blur-soft));
+    -webkit-backdrop-filter: blur(var(--blur-soft));
+  }
+
+  .glass--strong {
+    backdrop-filter: blur(var(--blur-strong));
+    -webkit-backdrop-filter: blur(var(--blur-strong));
+  }
+}
 
 /* Header & navigation */
 
