@@ -136,7 +136,19 @@ a {
   overflow: hidden;
 }
 
-
+.glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at top,
+    rgba(0, 255, 136, 0.08),
+    transparent 55%
+  );
+  opacity: 0.2;
+  pointer-events: none;
+  will-change: auto;
+}
 
 .glass--strong {
   background: var(--color-glass-strong);
@@ -147,10 +159,7 @@ a {
 }
 
 @supports ((backdrop-filter: blur(12px)) or (-webkit-backdrop-filter: blur(12px))) {
-  .glass {
-    backdrop-filter: blur(var(--blur-soft));
-    -webkit-backdrop-filter: blur(var(--blur-soft));
-  }
+
 
   .glass--strong {
     backdrop-filter: blur(var(--blur-strong));
