@@ -117,27 +117,37 @@ function initNavigation() {
 
   // Highlight active nav item on scroll
   const sections = document.querySelectorAll(SELECTORS.sections);
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        const id = entry.target.getAttribute('id');
-        if (!id) return;
-        links.forEach((link) => {
-          const href = link.getAttribute('href');
-          // Маппинг старых ID на новые для обратной совместимости
-          const targetId = href === '#services' ? '#company' : href;
-          link.classList.toggle(
-            'nav__link--active',
-            targetId === `#${id}` || href === `#${id}`
-          );
-        });
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+  
+      const id = entry.target.id;
+      if (!id) return;
+  
+      // Определяем, какой href в навигации соответствует этой секции
+      let targetHref;
+      if (id === 'company') {
+        targetHref = '#company';   // ← секция "company" активирует ссылку "#services"
+      } else if (id === 'about') {
+        targetHref = '#about';      // можно оставить как есть
+      } else if (id === 'contact' || id === 'contacts') {
+        targetHref = '#contact';    // адаптируйте под ваш id
+      } else {
+        targetHref = `#${id}`;      // fallback для остальных
+      }
+  
+      // Обновляем состояние всех ссылок
+      links.forEach((link) => {
+        const href = link.getAttribute('href');
+        if (!href) return;
+        link.classList.toggle('nav__link--active', href === targetHref);
       });
-    },
-    {
-      threshold: 0.5,
-    }
-  );
+    });
+  }, {
+    threshold: 0.1, // делаем чувствительнее
+    // или используйте rootMargin, если нужно:
+    // rootMargin: '0px 0px -50% 0px'
+  });
 
   sections.forEach((section) => observer.observe(section));
 }
