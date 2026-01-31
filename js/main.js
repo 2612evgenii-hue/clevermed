@@ -81,6 +81,77 @@ function initLoader() {
 /**
  * Navigation (icons + mobile burger)
  */
+// function initNavigation() {
+//   const burger = document.querySelector(SELECTORS.burger);
+//   const nav = document.querySelector(SELECTORS.nav);
+//   const links = document.querySelectorAll(SELECTORS.navLinks);
+
+//   if (!nav || !links.length) return;
+
+//   // Smooth scroll on click
+//   links.forEach((link) => {
+//     link.addEventListener('click', (event) => {
+//       const href = link.getAttribute('href');
+//       if (!href || !href.startsWith('#')) return;
+//       const target = document.querySelector(href);
+//       if (!target) return;
+//       event.preventDefault();
+//       smoothScrollTo(target);
+//       // Close mobile nav
+//       if (burger && nav.classList.contains(CLASSNAMES.navOpen)) {
+//         nav.classList.remove(CLASSNAMES.navOpen);
+//         burger.classList.remove(CLASSNAMES.burgerOpen);
+//         burger.setAttribute('aria-expanded', 'false');
+//       }
+//     });
+//   });
+
+//   // Burger for mobile
+//   if (burger) {
+//     burger.addEventListener('click', () => {
+//       const isOpen = nav.classList.toggle(CLASSNAMES.navOpen);
+//       burger.classList.toggle(CLASSNAMES.burgerOpen, isOpen);
+//       burger.setAttribute('aria-expanded', String(isOpen));
+//     });
+//   }
+
+//   // Highlight active nav item on scroll
+//   const sections = document.querySelectorAll(SELECTORS.sections);
+//   const observer = new IntersectionObserver((entries) => {
+//     entries.forEach((entry) => {
+//       if (!entry.isIntersecting) return;
+  
+//       const id = entry.target.id;
+//       if (!id) return;
+  
+//       // Определяем, какой href в навигации соответствует этой секции
+//       let targetHref;
+//       if (id === 'company') {
+//         targetHref = '#company';   // ← секция "company" активирует ссылку "#services"
+//       } else if (id === 'about') {
+//         targetHref = '#about';      // можно оставить как есть
+//       } else if (id === 'contact' || id === 'contacts') {
+//         targetHref = '#contact';    // адаптируйте под ваш id
+//       } else {
+//         targetHref = `#${id}`;      // fallback для остальных
+//       }
+  
+//       // Обновляем состояние всех ссылок
+//       links.forEach((link) => {
+//         const href = link.getAttribute('href');
+//         if (!href) return;
+//         link.classList.toggle('nav__link--active', href === targetHref);
+//       });
+//     });
+//   }, {
+//     threshold: 0.1, // делаем чувствительнее
+//     // или используйте rootMargin, если нужно:
+//     // rootMargin: '0px 0px -50% 0px'
+//   });
+
+//   sections.forEach((section) => observer.observe(section));
+// }
+
 function initNavigation() {
   const burger = document.querySelector(SELECTORS.burger);
   const nav = document.querySelector(SELECTORS.nav);
@@ -115,41 +186,58 @@ function initNavigation() {
     });
   }
 
-  // Highlight active nav item on scroll
+  // === УЛУЧШЕННЫЙ OBSERVER ДЛЯ АКТИВНОЙ ССЫЛКИ ===
   const sections = document.querySelectorAll(SELECTORS.sections);
+  if (!sections.length) return;
+
+  // Маппинг: id секции → href в навигации
+  const SECTION_ID_TO_HREF = {
+    'company': '#company',   // ← главная правка!
+    'about':   '#about',
+    'contact': '#contact',
+    'contacts': '#contact',   // на случай множественного числа
+    // остальные: id → #id (обрабатываются ниже)
+  };
+
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-  
-      const id = entry.target.id;
-      if (!id) return;
-  
-      // Определяем, какой href в навигации соответствует этой секции
-      let targetHref;
-      if (id === 'company') {
-        targetHref = '#company';   // ← секция "company" активирует ссылку "#services"
-      } else if (id === 'about') {
-        targetHref = '#about';      // можно оставить как есть
-      } else if (id === 'contact' || id === 'contacts') {
-        targetHref = '#contact';    // адаптируйте под ваш id
-      } else {
-        targetHref = `#${id}`;      // fallback для остальных
-      }
-  
-      // Обновляем состояние всех ссылок
-      links.forEach((link) => {
-        const href = link.getAttribute('href');
-        if (!href) return;
-        link.classList.toggle('nav__link--active', href === targetHref);
-      });
+    // Находим ВСЕ пересекающиеся секции и выбираем ТУ, что ближе к центру
+    const intersectingEntries = entries.filter(entry => entry.isIntersecting);
+    
+    if (intersectingEntries.length === 0) return;
+
+    // Сортируем по расстоянию от центра viewport (ближайшая — приоритет)
+    const viewportCenter = window.innerHeight / 2;
+    const bestEntry = intersectingEntries.reduce((closest, entry) => {
+      const rect = entry.target.getBoundingClientRect();
+      const entryCenter = rect.top + rect.height / 2;
+      const distance = Math.abs(entryCenter - viewportCenter);
+      
+      const closestRect = closest.target.getBoundingClientRect();
+      const closestCenter = closestRect.top + closestRect.height / 2;
+      const closestDistance = Math.abs(closestCenter - viewportCenter);
+      
+      return distance < closestDistance ? entry : closest;
+    });
+
+    const id = bestEntry.target.id;
+    if (!id) return;
+
+    // Определяем, какая ссылка должна быть активной
+    const targetHref = SECTION_ID_TO_HREF[id] || `#${id}`;
+
+    // Обновляем все ссылки
+    links.forEach((link) => {
+      const href = link.getAttribute('href');
+      link.classList.toggle('nav__link--active', href === targetHref);
     });
   }, {
-    threshold: 0.1, // делаем чувствительнее
-    // или используйте rootMargin, если нужно:
-    // rootMargin: '0px 0px -50% 0px'
+    // Делаем чувствительным даже к небольшому пересечению
+    threshold: 0.1,
+    // ИЛИ используйте rootMargin для лучшей реакции:
+    // rootMargin: '-30% 0px -70% 0px'
   });
 
-  sections.forEach((section) => observer.observe(section));
+  sections.forEach(section => observer.observe(section));
 }
 
 /**
@@ -396,12 +484,7 @@ function initContactForm() {
   const errors = form.querySelectorAll(SELECTORS.contactErrors);
   const successNode = document.querySelector(SELECTORS.contactSuccess);
 
-  // Initialize EmailJS
-  if (typeof emailjs !== 'undefined') {
-    // ВАЖНО: Замените эти значения на ваши ключи из EmailJS
-    // Получите их на https://dashboard.emailjs.com/admin/integration
-    emailjs.init('YOUR_PUBLIC_KEY'); // Замените на ваш Public Key
-  }
+  // EmailJS v4 не требует init(), ключ передается в параметрах
 
   const setError = (name, message) => {
     const input = form.elements[name];
@@ -470,21 +553,38 @@ function initContactForm() {
     }
 
     try {
-      // EmailJS отправка
-      if (typeof emailjs !== 'undefined') {
-        // ВАЖНО: Замените 'YOUR_SERVICE_ID' и 'YOUR_TEMPLATE_ID' на ваши значения
-        // Получите их на https://dashboard.emailjs.com/admin
-        await emailjs.send(
-          'YOUR_SERVICE_ID',    // Замените на ваш Service ID
-          'YOUR_TEMPLATE_ID',   // Замените на ваш Template ID
-          {
-            from_name: form.elements.name.value.trim(),
-            from_phone: form.elements.phone.value.trim(),
-            message: form.elements.message.value.trim(),
-            to_email: 'marina_pap@mail.ru', // Email получателя
-          }
-        );
+      // EmailJS отправка (v4 синтаксис)
+      if (typeof emailjs === 'undefined') {
+        throw new Error('EmailJS SDK не загружен. Проверьте подключение скрипта.');
       }
+
+      // Подготовка параметров для шаблона
+      const templateParams = {
+        from_name: form.elements.name.value.trim(),
+        from_phone: form.elements.phone.value.trim(),
+        message: form.elements.message.value.trim(),
+      };
+
+      // Опции для EmailJS v4
+      const emailjsOptions = {
+        publicKey: 'f941thyvhxIIemZsG',
+      };
+
+      console.log('Отправка через EmailJS:', {
+        serviceId: 'service_d6a900c',
+        templateId: 'template_i6x7934',
+        params: templateParams,
+      });
+
+      // Отправка через EmailJS v4
+      const response = await emailjs.send(
+        'service_d6a900c',
+        'template_i6x7934',
+        templateParams,
+        emailjsOptions
+      );
+
+      console.log('EmailJS успешно отправлен:', response);
 
       if (successNode) {
         successNode.textContent =
@@ -496,9 +596,24 @@ function initContactForm() {
       );
     } catch (error) {
       console.error('Ошибка отправки формы:', error);
+      console.error('Детали ошибки:', {
+        message: error.text || error.message,
+        status: error.status,
+        response: error.response,
+      });
+      
       if (successNode) {
-        successNode.textContent =
-          'Произошла ошибка при отправке. Пожалуйста, попробуйте позже или свяжитесь с нами по телефону.';
+        let errorMessage = 'Произошла ошибка при отправке. ';
+        
+        if (error.text) {
+          errorMessage += `Ошибка: ${error.text}`;
+        } else if (error.message) {
+          errorMessage += error.message;
+        } else {
+          errorMessage += 'Пожалуйста, попробуйте позже или свяжитесь с нами по телефону.';
+        }
+        
+        successNode.textContent = errorMessage;
         successNode.style.color = 'var(--color-error)';
       }
     } finally {
@@ -592,7 +707,21 @@ document.addEventListener('DOMContentLoaded', () => {
   initCounters();
   initServicesCarousel();
   initPhotoCarousel();
-  initContactForm();
+  
+  // Инициализируем форму после загрузки EmailJS SDK
+  if (typeof emailjs !== 'undefined') {
+    initContactForm();
+  } else {
+    // Ждем загрузки EmailJS SDK
+    window.addEventListener('load', () => {
+      if (typeof emailjs !== 'undefined') {
+        initContactForm();
+      } else {
+        console.error('EmailJS SDK не загружен. Проверьте подключение скрипта в index.html');
+      }
+    });
+  }
+  
   initMediaOptimization();
   initYandexMap();
   initServiceWorker();

@@ -1520,7 +1520,7 @@ a {
   font-family: var(--font-accent);
   font-weight: 800;
   font-size: 1.8rem;
-  color: #000;
+  color: #fff;
   display: inline-block;
   opacity: 0;
   transform: scale(0) rotate(-180deg);
@@ -1529,6 +1529,7 @@ a {
 
 .loader__initial--1 {
   animation-delay: 0.1s;
+  color: #00ff88;
 }
 
 .loader__initial--2 {
